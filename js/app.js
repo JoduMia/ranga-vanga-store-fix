@@ -14,12 +14,12 @@ loadProducts('https://fakestoreapi.com/products');
 // show all product in UI
 const showProducts = (products) => {
 
-   setInnerText('total_products', products.length);
 
    document.getElementById("all-products").innerHTML = "";
 
-   const allProducts = products.slice(0, 10).map((pd) => pd);
-   for (const product of allProducts) {
+   // const allProducts = products.slice(0, 10).map((pd) => pd);
+   setInnerText('total_products', products.length, "M");
+   for (const product of products) {
       // console.log(product);
       const image = product.image;
       const div = document.createElement('div');
