@@ -85,7 +85,7 @@ const updatePrice = (id, value) => {
 // set innerText function
 const setInnerText = (id, value) => {
    // console.log(value);
-   if(/\d/.test(value)){
+   if(/^\d/.test(value)){
       document.getElementById(id).innerText = Math.round(value);
    } else {
       document.getElementById(id).innerText = value;
