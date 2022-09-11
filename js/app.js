@@ -62,31 +62,33 @@ const showProductDetails = (product_id) => {
 
 const showProductDetailsInModal = (product_details) => {
    // console.log(product_details);
-   setInnerText('exampleModalLabel', product_details.title);
-   setInnerText('product_id', product_details.id);
-   setInnerText('modal_body', product_details.description);
-   setInnerText('rating', product_details.rating.rate);
+   setInnerText('exampleModalLabel', product_details.title, 'M');
+   setInnerText('product_id', product_details.id, 'M');
+   setInnerText('modal_body', product_details.description, 'M');
+   setInnerText('rating', product_details.rating.rate, 'M');
 };
 
 const getInputValue = (id) => {
    const element = document.getElementById(id).innerText;
-   const converted = parseInt(element);
+   const converted = parseFloat(element);
    return converted;
 };
 
 // main price update function
 const updatePrice = (id, value) => {
    const convertedOldPrice = getInputValue(id);
-   const convertPrice = parseInt(value);
+   const convertPrice = parseFloat(value);
    const total = convertedOldPrice + convertPrice;
-   document.getElementById(id).innerText = Math.round(total);
+   document.getElementById(id).innerText = total.toFixed(2);
 };
 
 // set innerText function
-const setInnerText = (id, value) => {
+const setInnerText = (id, value, m) => {
    // console.log(value);
-   if(/^\d/.test(value)){
+   if(/^\d/.test(value) && m){
       document.getElementById(id).innerText = Math.round(value);
+   } else if(/^\d/.test(value)){
+      document.getElementById(id).innerText = value.toFixed(2);
    } else {
       document.getElementById(id).innerText = value;
    }
@@ -115,7 +117,7 @@ const updateTotal = () => {
       getInputValue('price') +
       getInputValue('delivery-charge') +
       getInputValue('total-tax');
-   document.getElementById('total').innerText = grandTotal;
+   document.getElementById('total').innerText = grandTotal.toFixed(2);
 };
 
 // search by category
